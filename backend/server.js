@@ -2,6 +2,12 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 // import routes
 import patientRoutes from "./routes/patientRoutes.js";
@@ -29,8 +35,10 @@ app.use("/api/patients", patientRoutes);
 app.use("/api/appointments", appointmentRoutes);
 
 // default route
-app.get("/", (req, res) => {
-  res.send("API is running...");
+app.use(express.static(path.join(__dirname, "dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 // start server
