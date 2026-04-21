@@ -46,7 +46,7 @@ function NewPatient() {
 
       // 2. Attempt to send data to the backend
 
-      const response = await fetch("http://localhost:5000/api/patients", {
+      const response = await fetch("https://eye-hospital-qw24.onrender.com/api/patients", {
 
         method: "POST",
 
